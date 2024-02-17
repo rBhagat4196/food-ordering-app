@@ -15,9 +15,10 @@ import {
   BsExclamationTriangleFill,
 } from "react-icons/bs";
 
-import { IoFastFood, IoMdBasket } from "react-icons/io";
+import { IoMdBasket } from "react-icons/io";
 import { BiChevronRight } from "react-icons/bi";
 import { HiCurrencyRupee } from "react-icons/hi2";
+import { IoFastFood } from "react-icons/io5";
 
 export {
     FaEnvelope,
@@ -31,10 +32,10 @@ export {
     MdLogout,
     MdSearch,
     MdDelete,
+    IoFastFood,
     BsToggles2,
     BsFillBellFill,
     BsExclamationTriangleFill,
-    IoFastFood,
     IoMdBasket,
     BiChevronRight,
     HiCurrencyRupee
