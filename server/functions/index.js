@@ -25,6 +25,6 @@ app.get("/", (req, res) => {
     return res.send("hello");
 });
 
-app.use("/api/user", userRoute);
+app.use("/api/users", userRoute);
 
 exports.App = functions.https.onRequest(app);

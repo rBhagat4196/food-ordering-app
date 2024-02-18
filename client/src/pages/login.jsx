@@ -4,9 +4,12 @@ import { LoginInput } from "../components";
 import { FaEnvelope, FaLock, FcGoogle } from "../assets/icons";
 import { motion } from "framer-motion";
 import { buttonClick } from "../animations";
-import {getAuth , signInWithPopup , GoogleAuthProvider} from "firebase/auth"
+import {getAuth , signInWithPopup , GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
 import { app } from "../config/firebase";
+import { validateJWTToken } from "../api";
+import {useNavigate} from "react-router-dom"
 const LoginPage = () => {
+  const navigate = useNavigate();
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const [email, setEmail] = useState("");
@@ -18,11 +21,51 @@ const LoginPage = () => {
       auth.onAuthStateChanged((cred) => {
         if(cred){
           cred.getIdToken().then(token =>{
-            console.log(token)
+            validateJWTToken(token).then((data) => console.log(data))
           })
+          navigate("/",{replace : true})
         }
       })
     })
+  }
+  const signUpWithEmailPass = async()=>{
+    if((!email|| !password || !confirmPassword) ){
+    }else{
+      if(password === confirmPassword){
+        setEmail("")
+        setPassword("")
+        setConfirmPassord("")
+        await createUserWithEmailAndPassword(auth,email,password).then(user =>{
+          auth.onAuthStateChanged((cred) => {
+            if(cred){
+              cred.getIdToken().then(token =>{
+                validateJWTToken(token).then((data) => console.log(data))
+              })
+              navigate("/",{replace : true})
+            }
+          })
+        })
+      }else{
+        alert("password not matched");
+      }
+    }
+  }
+
+  const signInWithEmailPass = async()=>{
+    if((!email|| !password ) ){
+      alert("please enter credentials")
+    }else{
+      await signInWithEmailAndPassword(auth,email,password).then(user =>{
+        auth.onAuthStateChanged((cred) => {
+          if(cred){
+            cred.getIdToken().then(token =>{
+              validateJWTToken(token).then((data) => console.log(data))
+            })
+            navigate("/",{replace : true})
+          }
+        })
+      })
+    }
   }
   return (
     <div className="min-h-screen min-w-full relative overflow-hidden flex">
@@ -108,6 +151,7 @@ const LoginPage = () => {
           {isSignUp ? (
             <motion.button
               {...buttonClick}
+              onClick={signUpWithEmailPass}
               className="w-full h-full px-4 py-2 bg-red-400 cursor-pointer text-white text-xl capitalize hover:bg-red-500 transition-all duration-100 rounded-lg"
             >
               Sign Up
@@ -115,6 +159,7 @@ const LoginPage = () => {
           ) : (
             <motion.button
               {...buttonClick}
+              onClick={signInWithEmailPass}
               className="w-full h-full px-4 py-2 bg-red-400 cursor-pointer text-white text-xl capitalize hover:bg-red-500 transition-all duration-100 rounded-lg"
             >
               Sign In

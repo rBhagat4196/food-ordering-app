@@ -11,12 +11,13 @@ router.get("/jwtVerification",async(req,res)=>{
         return res.status(500).json({msg : "token not fund"})
     }
     const token = req.headers.authorization.split(" ")[1];
+    // console.log(token)
     try{
         const decodedValue = await admin.auth().verifyIdToken(token)
         if(!decodedValue){
             return  res.status(500).json({success : false , msg : "Unauthorized User"})
         }
-        res.status(200).json({success : true , data : decodedValue})
+        return res.status(200).json({success : true , data : decodedValue})
     }catch(error){
         res.send({
             success : false,
