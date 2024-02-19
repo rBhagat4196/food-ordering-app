@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoginInput } from "../components";
 import { FaEnvelope, FaLock, FcGoogle } from "../assets/icons";
 import { motion } from "framer-motion";
@@ -8,11 +8,19 @@ import {getAuth , signInWithPopup , GoogleAuthProvider, createUserWithEmailAndPa
 import { app } from "../config/firebase";
 import { validateJWTToken } from "../api";
 import {useNavigate} from "react-router-dom"
-import { UseDispatch,useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { setUserDetails } from "../redux/userSlice";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector(state => state.user.user)
+
+  useEffect(()=>{
+
+    if(user){
+      return navigate('/',{replace : true});
+    }
+  },[])
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const [email, setEmail] = useState("");
