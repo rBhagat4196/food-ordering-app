@@ -8,7 +8,10 @@ import {getAuth , signInWithPopup , GoogleAuthProvider, createUserWithEmailAndPa
 import { app } from "../config/firebase";
 import { validateJWTToken } from "../api";
 import {useNavigate} from "react-router-dom"
+import { UseDispatch,useDispatch,useSelector } from "react-redux";
+import { setUserDetails } from "../redux/userSlice";
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
@@ -21,7 +24,7 @@ const LoginPage = () => {
       auth.onAuthStateChanged((cred) => {
         if(cred){
           cred.getIdToken().then(token =>{
-            validateJWTToken(token).then((data) => console.log(data))
+            validateJWTToken(token).then((data) => dispatch(setUserDetails(data)))
           })
           navigate("/",{replace : true})
         }
@@ -39,7 +42,7 @@ const LoginPage = () => {
           auth.onAuthStateChanged((cred) => {
             if(cred){
               cred.getIdToken().then(token =>{
-                validateJWTToken(token).then((data) => console.log(data))
+                validateJWTToken(token).then((data) => dispatch(setUserDetails(data)))
               })
               navigate("/",{replace : true})
             }
@@ -59,7 +62,7 @@ const LoginPage = () => {
         auth.onAuthStateChanged((cred) => {
           if(cred){
             cred.getIdToken().then(token =>{
-              validateJWTToken(token).then((data) => console.log(data))
+              validateJWTToken(token).then((data) => dispatch(setUserDetails(data)))
             })
             navigate("/",{replace : true})
           }
