@@ -10,6 +10,7 @@ import { setUserDetails ,} from './redux/userSlice'
 import { fadeOut } from './animations'
 import { motion } from 'framer-motion'
 import {Alert, Loader} from './components'
+import DashBoard from './pages/DashBoard'
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
       <Routes>
         <Route path='/*' element={<Home/>}/>
         <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/dashboard/*' element={<DashBoard/>}/>
       </Routes>
 
       {alert && 
