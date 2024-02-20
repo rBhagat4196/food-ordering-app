@@ -6,7 +6,11 @@ import { default as Header } from "./Header";
 import { default as DBRightSection } from "./DBRightSection";
 import { default as DBLeftSection } from "./DBLeftSection";
 import { default as DbHeader } from "./DbHeader";
-
+import { default as DbHome } from "./DbHome";
+import { default as DbOrders } from "./DbOrders";
+import { default as DbItems } from "./DbItems";
+import { default as DbNewItems } from "./DbNewItems";
+import { default as DbUsers } from "./DbUsers";
 export {
   LoginInput,
   Loader,
@@ -15,4 +19,9 @@ export {
   DBLeftSection,
   DBRightSection,
   DbHeader,
+  DbHome,
+  DbOrders,
+  DbItems,
+  DbNewItems,
+  DbUsers
 };
