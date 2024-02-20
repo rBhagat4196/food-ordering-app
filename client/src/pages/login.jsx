@@ -10,23 +10,26 @@ import { validateJWTToken } from "../api";
 import {useNavigate} from "react-router-dom"
 import { useDispatch, useSelector} from "react-redux";
 import { setUserDetails } from "../redux/userSlice";
+import {alertMsg} from "../redux/alertSlice"
+
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(state => state.user.user)
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    if(user){
-      return navigate('/',{replace : true});
-    }
-  },[user])
+  //   if(user){
+  //     return navigate('/',{replace : true});
+  //   }
+  // },[user])
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const [email, setEmail] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassord] = useState("");
+
   const loginWithGoogle = async()=>{
     await signInWithPopup(auth,googleProvider).then(user=>{
       auth.onAuthStateChanged((cred) => {
@@ -39,6 +42,7 @@ const LoginPage = () => {
       })
     })
   }
+
   const signUpWithEmailPass = async()=>{
     if((!email|| !password || !confirmPassword) ){
     }else{
@@ -57,25 +61,29 @@ const LoginPage = () => {
           })
         })
       }else{
-        alert("password not matched");
+        dispatch(alertMsg({type : "warning" , message : "Password doesn't match"}))
       }
     }
   }
 
   const signInWithEmailPass = async()=>{
     if((!email|| !password ) ){
-      alert("please enter credentials")
+      dispatch(alertMsg({type : "warning" , message : "Invalid Credential"}))
     }else{
-      await signInWithEmailAndPassword(auth,email,password).then(user =>{
-        auth.onAuthStateChanged((cred) => {
-          if(cred){
-            cred.getIdToken().then(token =>{
-              validateJWTToken(token).then((data) => dispatch(setUserDetails(data)))
-            })
-            navigate("/",{replace : true})
-          }
+      try{
+        await signInWithEmailAndPassword(auth,email,password).then(user =>{
+          auth.onAuthStateChanged((cred) => {
+            if(cred){
+              cred.getIdToken().then(token =>{
+                validateJWTToken(token).then((data) => dispatch(setUserDetails(data)))
+              })
+              navigate("/",{replace : true})
+            }
+          })
         })
-      })
+      }catch(error){
+        dispatch(alertMsg({type : "warning" , message : "Password or email doesn't match"}))
+      }
     }
   }
   return (

@@ -5,21 +5,24 @@ import { useEffect, useState } from 'react'
 import { getAuth } from 'firebase/auth'
 import { app } from './config/firebase'
 import { validateJWTToken } from './api'
-import { useDispatch } from 'react-redux'
-import { setUserDetails } from './redux/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserDetails ,} from './redux/userSlice'
 import { fadeOut } from './animations'
 import { motion } from 'framer-motion'
-import {Loader} from './components'
+import {Alert, Loader} from './components'
+
+
 function App() {
   const auth = getAuth(app)
   const navigate = useNavigate()
   const [isLoading,setIsLoading] = useState(false)
   const dispatch = useDispatch();
+  const alert = useSelector((state) => state.alert)
+  console.log(alert)
   // console.log(auth)
   useEffect(()=>{
     setIsLoading(true)
     auth.onAuthStateChanged((cred) => {
-      console.log("trying to login")
       if(cred){
         cred.getIdToken().then(token =>{
           validateJWTToken(token).then((data) => dispatch(setUserDetails(data)))
@@ -41,6 +44,10 @@ function App() {
         <Route path='/*' element={<Home/>}/>
         <Route path='/login' element={<LoginPage/>}/>
       </Routes>
+
+      {alert && 
+      <Alert type={alert?.type} message={alert?.msg}/>
+      }
     </div>
   )
 }
