@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { setUserDetails } from './redux/userSlice'
 import { fadeOut } from './animations'
 import { motion } from 'framer-motion'
+import {Loader} from './components'
 function App() {
   const auth = getAuth(app)
   const navigate = useNavigate()
@@ -33,7 +34,7 @@ function App() {
     <div className='min-h-screen min-w-full h-auto flex flex-col items-center justify-center'>
       {isLoading && (
         <motion.div {...fadeOut} className="fixed z-50 inset-0 bg-lightOverlay backdrop-blur-md flex items-center justify-center w-full ">
-          Loading...
+          <Loader/>
         </motion.div>
       )}
       <Routes>

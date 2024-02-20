@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { LoginInput } from "../components";
+import { LoginInput ,Loader } from "../components";
 import { FaEnvelope, FaLock, FcGoogle } from "../assets/icons";
 import { motion } from "framer-motion";
 import { buttonClick } from "../animations";
@@ -20,7 +20,7 @@ const LoginPage = () => {
     if(user){
       return navigate('/',{replace : true});
     }
-  },[])
+  },[user])
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const [email, setEmail] = useState("");
