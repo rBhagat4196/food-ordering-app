@@ -21,7 +21,7 @@ function App() {
   const alert = useSelector((state) => state.alert)
 
   
-  console.log(alert)
+  // console.log(alert)
   // console.log(auth)
   useEffect(()=>{
     setIsLoading(true)
