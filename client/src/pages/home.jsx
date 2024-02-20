@@ -1,13 +1,13 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetails } from '../redux/userSlice';
+import {Header} from "../components"
 const Home = () => {
-  // const data = useSelector((state) => state.user.user)
-  // console.log(data)
+
   return (
-    <div>
-      home
-    </div>
+    <main className= "w-screen h-screen flex items-center justify-center flex-col bg-primary">
+      <Header/>
+    </main>
   )
 }
 

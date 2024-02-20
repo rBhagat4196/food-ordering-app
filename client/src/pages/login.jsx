@@ -17,12 +17,11 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const user = useSelector(state => state.user.user)
 
-  // useEffect(()=>{
-
-  //   if(user){
-  //     return navigate('/',{replace : true});
-  //   }
-  // },[user])
+  useEffect(()=>{
+    if(user){
+      return navigate('/',{replace : true});
+    }
+  },[user])
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const [email, setEmail] = useState("");
@@ -45,6 +44,7 @@ const LoginPage = () => {
 
   const signUpWithEmailPass = async()=>{
     if((!email|| !password || !confirmPassword) ){
+      dispatch(alertMsg({type : "warning" , message : "Required fields should not be empty"}))
     }else{
       if(password === confirmPassword){
         setEmail("")
