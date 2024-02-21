@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import DataTable from "./DataTable";
 
-const DbItems = () => {
+const DBItems = () => {
   return (
     <div>
-      Items
+      <DataTable/>
     </div>
-  )
-}
+  );
+};
 
-export default DbItems
+export default DBItems;

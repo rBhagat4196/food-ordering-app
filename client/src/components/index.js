@@ -11,6 +11,7 @@ import { default as DbOrders } from "./DbOrders";
 import { default as DbItems } from "./DbItems";
 import { default as DbNewItems } from "./DbNewItems";
 import { default as DbUsers } from "./DbUsers";
+import { default as DataTable } from "./DataTable";
 export {
   LoginInput,
   Loader,
@@ -23,5 +24,6 @@ export {
   DbOrders,
   DbItems,
   DbNewItems,
-  DbUsers
+  DbUsers,
+  DataTable
 };

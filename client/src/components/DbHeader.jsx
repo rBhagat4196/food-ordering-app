@@ -12,9 +12,11 @@ import { getAuth } from "firebase/auth";
 import { app } from "../config/firebase";
 import { setUserDetails } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import {Avatar} from "../img"
+
 const DbHeader = () => {
   const user = useSelector((state) => state.user.user);
-  console.log(user);
+  // console.log(user);
   const auth = getAuth(app)
   const dispatch = useDispatch()
   const navigate = useNavigate()
