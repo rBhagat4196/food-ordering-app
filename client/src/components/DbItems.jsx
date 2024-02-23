@@ -3,8 +3,8 @@ import DataTable from "./DataTable";
 
 const DBItems = () => {
   return (
-    <div>
-      <DataTable/>
+    <div className="flex items-center justify-self-center gap-4 pt-6 w-full">
+      <DataTable />
     </div>
   );
 };
