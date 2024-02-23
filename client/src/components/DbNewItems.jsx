@@ -19,9 +19,12 @@ export const InputValueField = ({
     </>
   );
 };
+
+
 const DbNewItems = () => {
   const [itemName, setItemName] = useState("");
-  const [category,setCategory] = useState("")
+  const [category,setCategory] = useState("");
+  const [price,setPrice] = useState(null)
   return (
     <div className="flex flex-col items-center justify-center gap-4 pt-6 w-full px-24">
       <div className="border border-gray-300 rounded-md p-4 w-full flex flex-col items-center justify-center gap-4">
@@ -48,6 +51,12 @@ const DbNewItems = () => {
               </p>
             ))}
         </div>
+        <InputValueField
+          type="number"
+          placeHolder={"Item price here"}
+          stateFunc={setPrice}
+          stateValue={price}
+        />
     </div>
   );
 };

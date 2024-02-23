@@ -12,6 +12,8 @@ import { default as DbItems } from "./DbItems";
 import { default as DbNewItems } from "./DbNewItems";
 import { default as DbUsers } from "./DbUsers";
 import { default as DataTable } from "./DataTable";
+import { default as SPinner } from "./Spinner";
+
 export {
   LoginInput,
   Loader,
