@@ -8,6 +8,7 @@ import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebas
 import { storage } from "../config/firebase";
 import { useDispatch, useSelector} from "react-redux";
 import { alertMsg } from "../redux/alertSlice";
+import { addNewProduct } from "../api";
 
 export const InputValueField = ({
   type,
@@ -51,7 +52,7 @@ const DbNewItems = () => {
         setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       },
       (error) => {
-        dispatch(alertMsg({type : "success" , message : "Error occured"}));
+        dispatch(alertMsg({type : "danger" , message : "Error occured"}));
         setTimeout(() => {
           dispatch(alertMsg({type : "" , message : ""}));
         }, 3000);
@@ -61,7 +62,7 @@ const DbNewItems = () => {
           setImageDownloadURL(downloadURL);
           setisLoading(false);
           setProgress(null);
-          dispatch(alertMsg({type : "danger" , message : "image uploaded successfully"}));
+          dispatch(alertMsg({type : "success" , message : "image uploaded successfully"}));
           setTimeout(() => {
             dispatch(alertMsg({type : "" , message : ""}));
           }, 3000);
@@ -78,11 +79,35 @@ const DbNewItems = () => {
     deleteObject(deleteRef).then(() => {
       setImageDownloadURL(null);
       setisLoading(false);
-      dispatch(alertSuccess("Image removed from the cloud"));
+      dispatch(alertMsg({type : "success" , message : "image deleted successfully"}));
       setTimeout(() => {
         dispatch(alertNULL());
       }, 3000);
     });
+  };
+  
+  const submitNewData = () => {
+    const data = {
+      product_name: itemName,
+      product_category: category,
+      product_price: price,
+      imageURL: imageDownloadURL,
+    };
+    console.log(data);
+    addNewProduct(data).then((res) => {
+      console.log(res);
+      dispatch(alertMsg({type : "success" , message : "new item added successfully"}));
+      setTimeout(() => {
+        dispatch(alertMsg({type : "" , message : ""}));
+      }, 3000);
+      setImageDownloadURL(null);
+      setItemName("");
+      setPrice("");
+      setCategory(null);
+    });
+    // getAllProducts().then((data) => {
+    //   dispatch(setAllProducts(data));
+    // });
   };
   
   return (
@@ -195,7 +220,7 @@ const DbNewItems = () => {
         </div>
 
         <motion.button
-          onClick={deleteImageFromFirebase}
+          onClick={submitNewData}
           {...buttonClick}
           className="w-9/12 py-2 rounded-md bg-red-400 text-primary hover:bg-red-500 cursor-pointer"
         >
