@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { statuses } from "../utils/styles";
 import {motion} from "framer-motion"
 import {Spinner} from "../components"
-import {FaCloudUploadAlt} from "../assets/icons"
+import {FaCloudUploadAlt, MdDelete} from "../assets/icons"
 import {buttonClick} from "../animations"
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../config/firebase";
 import { useDispatch, useSelector} from "react-redux";
 import { alertMsg } from "../redux/alertSlice";
@@ -51,7 +51,7 @@ const DbNewItems = () => {
         setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       },
       (error) => {
-        dispatch(alertMsg({type : "success" , message : "image uploaded successfully"}));
+        dispatch(alertMsg({type : "success" , message : "Error occured"}));
         setTimeout(() => {
           dispatch(alertMsg({type : "" , message : ""}));
         }, 3000);
@@ -61,15 +61,30 @@ const DbNewItems = () => {
           setImageDownloadURL(downloadURL);
           setisLoading(false);
           setProgress(null);
-          dispatch(alertSuccess("Image Uploaded to the cloud"));
+          dispatch(alertMsg({type : "danger" , message : "image uploaded successfully"}));
           setTimeout(() => {
-            dispatch(alertNULL());
+            dispatch(alertMsg({type : "" , message : ""}));
           }, 3000);
         });
       }
     );
 
    }
+
+   const deleteImageFromFirebase = () => {
+    setisLoading(true);
+    const deleteRef = ref(storage, imageDownloadURL);
+
+    deleteObject(deleteRef).then(() => {
+      setImageDownloadURL(null);
+      setisLoading(false);
+      dispatch(alertSuccess("Image removed from the cloud"));
+      setTimeout(() => {
+        dispatch(alertNULL());
+      }, 3000);
+    });
+  };
+  
   return (
     <div className="flex items-center justify-center flex-col pt-6 px-24 w-full">
       <div className="border border-gray-300 rounded-md p-4 w-full flex flex-col items-center justify-center gap-4">
@@ -168,7 +183,7 @@ const DbNewItems = () => {
                       {...buttonClick}
                       type="button"
                       className="absolute top-3 right-3 p-3 rounded-full bg-red-500 text-xl cursor-pointer outline-none hover:shadow-md duration-500 transition-all ease-in-out"
-                      // onClick={() => deleteImageFromFirebase(imageDownloadURL)}
+                      onClick={() => deleteImageFromFirebase(imageDownloadURL)}
                     >
                       <MdDelete className="-rotate-0" />
                     </motion.button>
@@ -180,7 +195,7 @@ const DbNewItems = () => {
         </div>
 
         <motion.button
-          onClick={()=>{}}
+          onClick={deleteImageFromFirebase}
           {...buttonClick}
           className="w-9/12 py-2 rounded-md bg-red-400 text-primary hover:bg-red-500 cursor-pointer"
         >
