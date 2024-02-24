@@ -33,7 +33,7 @@ function App() {
     },3000)
   },[])
   return (
-    <div className='min-h-screen min-w-full h-auto flex flex-col items-center justify-center'>
+    <div className='min-h-screen min-w-screen h-auto flex flex-col items-center justify-center'>
       {isLoading && (
         <motion.div {...fadeOut} className="fixed z-50 inset-0 bg-lightOverlay backdrop-blur-md flex items-center justify-center w-full ">
           <Loader/>

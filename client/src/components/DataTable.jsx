@@ -16,9 +16,12 @@ import {
 } from "@mui/material";
 import { deleteAProduct, getAllProducts } from "../api";
 import { MdSearch, RxCross2 } from "../assets/icons";
+import { useDispatch } from "react-redux";
+import {alertMsg} from  "../redux/alertSlice"
 
 function RemoteData() {
   const [data, setData] = useState([]);
+  const dispath = useDispatch();
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -43,6 +46,11 @@ function RemoteData() {
     const isDeleted = await deleteAProduct(productId);
     if (isDeleted) {
       setData(data.filter((product) => product.productId !== productId));
+      dispath(alertMsg({type:"success" , message : "item deleted successfully"}))
+      setTimeout(()=>{
+        dispath(alertMsg({type:"" , message : ""}))
+
+      },3000)
     }
   };
 
@@ -88,7 +96,7 @@ function RemoteData() {
           padding: "0 16px",
         }}
       >
-         <Typography variant="h6">Items Preview</Typography>
+         <Typography variant="h6">List of Items</Typography>
         <div className="flex items-center justify-center gap-3 px-4 py-3 border-b-4 ">
           <MdSearch className="text-gray-400 text-2xl" />
           <input
@@ -142,7 +150,7 @@ function RemoteData() {
                   Product Price
                 </TableSortLabel>
               </TableCell>
-              <TableCell>Delete</TableCell>
+              <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
