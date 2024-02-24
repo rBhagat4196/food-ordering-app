@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const admin = require("firebase-admin")
+const admin = require("firebase-admin");
+const { error } = require("firebase-functions/logger");
 const db = admin.firestore()
 
 
@@ -25,4 +26,23 @@ router.post("/create", async (req, res) => {
   }
 });
 
+
+router.get("/all",async(req,res)=>{
+  try{
+    let query = db.collection("products");
+    let response = [];
+
+    await query.get().then((querySnap) => {
+      let docs = querySnap.docs;
+
+      docs.map((doc) => (
+        response.push({...doc.data()})
+      ));
+      return response;
+    })
+    return res.status(200).send({success : true,data:response})
+  }catch(error){
+    return res.send({success : false , msg : `Error : ${error}`})
+  }
+})
 module.exports = router
