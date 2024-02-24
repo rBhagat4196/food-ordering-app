@@ -15,6 +15,7 @@ import {
   Button,
 } from "@mui/material";
 import { deleteAProduct, getAllProducts } from "../api";
+import { MdSearch, RxCross2 } from "../assets/icons";
 
 function RemoteData() {
   const [data, setData] = useState([]);
@@ -24,7 +25,7 @@ function RemoteData() {
   const [searchTerm, setSearchTerm] = useState("");
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("product_price");
-
+  const [showCross,setShowCross] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -46,6 +47,7 @@ function RemoteData() {
   };
 
   const handleSearchChange = (event) => {
+    setShowCross(true)
     setSearchTerm(event.target.value);
   };
 
@@ -86,13 +88,27 @@ function RemoteData() {
           padding: "0 16px",
         }}
       >
-        <Typography variant="h6">Items Preview</Typography>
-        <TextField
-          label="Search"
-          variant="outlined"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
+         <Typography variant="h6">Items Preview</Typography>
+        <div className="flex items-center justify-center gap-3 px-4 py-3 border-b-4 ">
+          <MdSearch className="text-gray-400 text-2xl" />
+          <input
+            type="text"
+            placeholder="Search here..."
+            className="border-none outline-none bg-lightOverlay
+            "
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          <RxCross2
+            className={`${
+              showCross ? "flex" : "hidden"
+            } cursor-pointer text-gray-400 text-2xl`}
+            onClick={() => {
+              setShowCross(false);
+              setSearchTerm("")
+            }}
+          />
+          </div>
       </div>
       <TableContainer>
         <Table aria-label="remote data table">
