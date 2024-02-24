@@ -8,8 +8,8 @@ import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebas
 import { storage } from "../config/firebase";
 import { useDispatch, useSelector} from "react-redux";
 import { alertMsg } from "../redux/alertSlice";
-import { addNewProduct } from "../api";
-
+import { addNewProduct , getAllProducts } from "../api";
+import {setAllProducts} from "../redux/productSlice"
 export const InputValueField = ({
   type,
   placeHolder,
@@ -95,7 +95,7 @@ const DbNewItems = () => {
     };
     console.log(data);
     addNewProduct(data).then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch(alertMsg({type : "success" , message : "new item added successfully"}));
       setTimeout(() => {
         dispatch(alertMsg({type : "" , message : ""}));
@@ -105,9 +105,9 @@ const DbNewItems = () => {
       setPrice("");
       setCategory(null);
     });
-    // getAllProducts().then((data) => {
-    //   dispatch(setAllProducts(data));
-    // });
+    getAllProducts().then((data) => {
+      dispatch(setAllProducts(data));
+    });
   };
   
   return (

@@ -24,3 +24,13 @@ export const addNewProduct = async (data) => {
     }
   };
   
+
+export const getAllProducts = async()=>{
+  try {
+    const res = await axios.get(`${baseUrl}/api/products/all`);
+    // console.log(res.data)
+    return res.data.data;
+  } catch (err) {
+    return null;
+  }
+}

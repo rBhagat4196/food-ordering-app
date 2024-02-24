@@ -19,10 +19,6 @@ function App() {
   const [isLoading,setIsLoading] = useState(false)
   const dispatch = useDispatch();
   const alert = useSelector((state) => state.alert)
-
-  
-  // console.log(alert)
-  // console.log(auth)
   useEffect(()=>{
     setIsLoading(true)
     auth.onAuthStateChanged((cred) => {
