@@ -34,3 +34,14 @@ export const getAllProducts = async()=>{
     return null;
   }
 }
+
+export const deleteAProduct = async (productId) => {
+  try {
+    const res = await axios.delete(
+      `${baseUrl}/api/products/delete/${productId}`
+    );
+    return res.data.data;
+  } catch (err) {
+    return null;
+  }
+};
