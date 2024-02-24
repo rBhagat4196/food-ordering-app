@@ -13,7 +13,7 @@ import { default as DbNewItems } from "./DbNewItems";
 import { default as DbUsers } from "./DbUsers";
 import { default as DataTable } from "./DataTable";
 import { default as Spinner } from "./Spinner";
-
+import { default as UsersTable } from "./DbUsersTable";
 export {
   LoginInput,
   Loader,
@@ -28,5 +28,6 @@ export {
   DbNewItems,
   DbUsers,
   DataTable,
-  Spinner
+  Spinner,
+  UsersTable
 };

@@ -40,7 +40,7 @@ export const deleteAProduct = async (productId) => {
     const res = await axios.delete(
       `${baseUrl}/api/products/delete/${productId}`
     );
-    return res.data.data;
+    // return res.data.data;
   } catch (err) {
     return null;
   }
@@ -49,6 +49,7 @@ export const deleteAProduct = async (productId) => {
 export const getAllUsers = async()=>{
   try{
     const res = await axios.get(`${baseUrl}/api/users/all`);
+    // console.log(res.data)
     return res.data.data;
   }catch(error){
     return null;
