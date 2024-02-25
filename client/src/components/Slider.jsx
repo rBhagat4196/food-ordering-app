@@ -20,17 +20,17 @@ const Slider = () => {
 
 //   console.log(fruits)
   return (
-    <div className="w-full pt-24">
+    <div className="w-full pt-24 ">
     <Swiper
-      slidesPerView={4}
+      slidesPerView={3}
       centeredSlides={false}
       spaceBetween={30}
       grabCursor={true}
-      className="mySwiper"
+      className="mySwiper "
     >
       {fruits &&
         fruits.map((data, i) => (
-          <SwiperSlide key={i}>
+            <SwiperSlide key={i} className="w-full">
             <SliderCard key={i} data={data} index={i} />
           </SwiperSlide>
         ))}

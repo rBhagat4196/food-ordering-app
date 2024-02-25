@@ -18,6 +18,7 @@ import { default as LandingPage } from "./LandingPage";
 import { default as HomeSlider } from "./HomeSlider";
 import { default as Slider } from "./Slider";
 import { default as SliderCard } from "./SliderCard";
+import { default as FilterSection } from "./FilterSection";
 
 export {
   LoginInput,
@@ -38,5 +39,6 @@ export {
   LandingPage,
   HomeSlider,
   Slider,
-  SliderCard
+  SliderCard,
+  FilterSection
 };
