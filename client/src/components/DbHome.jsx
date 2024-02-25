@@ -85,7 +85,7 @@ const DbHome = () => {
     ];
   }
   const labels = statuses.map((category) => category.title);
-  console.log(data);
+  // console.log(data);
   return (
     <div className="flex items-center justify-center flex-col p-6 w-full h-full">
       <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-4 h-full">
