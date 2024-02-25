@@ -1,3 +1,4 @@
 import Avatar from "./avatar.png"
 import Delivery from "./delivery.png"
-export {Avatar,Delivery}
+import HeroBg from "./heroBg.png"
+export {Avatar,Delivery,HeroBg}

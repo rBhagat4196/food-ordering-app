@@ -14,55 +14,44 @@ export const statuses = [
   { id: 9, title: "Snacks", category: "snacks" },
   { id: 10, title: "Regional", category: "regional" },
   { id: 11, title: "Beverages", category: "beverages" },
+  { id: 12, title: "Fruits", category: "fruits" },
   ];
 
-  export const randomData = [
+  export const foodData = [
     {
-      id: 1,
-      imageURL:
-        "https://firebasestorage.googleapis.com/v0/b/food-app-nov-22.appspot.com/o/Pictures%2F1674704862591_dessert2.png?alt=media&token=7c001521-f0ac-40a8-b07a-42dc4aab444a",
-      product_name: "Iceream",
-      product_category: "Chocolate & vanilla",
-      product_price: "23.00",
+        id: 1,
+        imageURL: "https://firebasestorage.googleapis.com/v0/b/foodordering-4c8ad.appspot.com/o/images%2F1708853479628_f2.png?alt=media&token=f0ab9e62-19e4-4479-9c73-dbdaece7a664",
+        product_category: "fruits",
+        product_name: "Pineapple",
+        product_price: 20
     },
     {
-      id: 2,
-      imageURL:
-        "https://firebasestorage.googleapis.com/v0/b/food-app-nov-22.appspot.com/o/Pictures%2F1674797445483_f1.png?alt=media&token=8b46c1ce-9600-4f9a-8ff7-3518b1bf6db3",
-      product_name: "Strawberries",
-      product_category: "Fresh Strawberries",
-      product_price: "18.00",
+        id: 2,
+        imageURL: "https://firebasestorage.googleapis.com/v0/b/foodordering-4c8ad.appspot.com/o/images%2F1708853499601_i5.png?alt=media&token=b64ec92b-2bec-4e72-b29a-110b4430d2c6",
+        product_category: "sweets",
+        product_name: "Ice-Cream",
+        product_price: 15
     },
     {
-      id: 3,
-      imageURL:
-        "https://firebasestorage.googleapis.com/v0/b/food-app-nov-22.appspot.com/o/Pictures%2F1674797463817_f2.png?alt=media&token=69ab9301-ef04-4690-bc68-e537cdc1985e",
-      product_name: "Pine Apple",
-      product_category: "Juicy Apples",
-      product_price: "16.00",
+        id: 3,
+        imageURL: "https://firebasestorage.googleapis.com/v0/b/foodordering-4c8ad.appspot.com/o/images%2F1708853743460_cu4.png?alt=media&token=750b0f4c-ee3b-4f8d-b89d-55d0e7166368",
+        product_category: "curries",
+        product_name: "Chicken-Curry",
+        product_price: 41
     },
     {
-      id: 4,
-      imageURL:
-        "https://firebasestorage.googleapis.com/v0/b/food-app-nov-22.appspot.com/o/Pictures%2F1674797033037_c3.png?alt=media&token=7644719f-95ae-42f2-8227-3fb843faa567",
-      product_name: "Chicken Kebab",
-      product_category: "Mixed Kebab Plate",
-      product_price: "22.0",
+        id: 4,
+        imageURL: "https://firebasestorage.googleapis.com/v0/b/foodordering-4c8ad.appspot.com/o/images%2F1708853784563_d7.png?alt=media&token=23b529c4-46ee-4806-b7c9-68bf7c1bb048",
+        product_category: "beverages",
+        product_name: "Juices",
+        product_price: 9
     },
     {
       id: 5,
-      imageURL:
-        "https://firebasestorage.googleapis.com/v0/b/food-app-nov-22.appspot.com/o/Pictures%2F1674797376326_d4.png?alt=media&token=7d37b12c-f3a8-4561-974e-de6574ddfea6",
-      product_name: "Mojito",
-      product_category: "Cocktail Drinks",
-      product_price: "10.0",
-    },
-    {
-      id: 6,
-      imageURL:
-        "https://firebasestorage.googleapis.com/v0/b/food-app-nov-22.appspot.com/o/Pictures%2F1674797198643_cu3.png?alt=media&token=e630d851-91aa-4135-a241-0ab961a7c4ee",
-      product_name: "Prawn Masala",
-      product_category: "Spicy Masala",
-      product_price: "20.0",
-    },
-  ];
+      imageURL: "https://firebasestorage.googleapis.com/v0/b/foodordering-4c8ad.appspot.com/o/images%2F1708854507664_fi1.png?alt=media&token=4196241b-607a-49f6-b67b-b8e88fe9a873",
+      product_category: "south",
+      product_name: "Sea-food",
+      product_price: 23,
+  },
+    // You can continue adding more food items here following the same structure
+];

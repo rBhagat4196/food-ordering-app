@@ -43,15 +43,13 @@ function RemoteData() {
   }, []);
 
   const handleDelete = async (productId) => {
-    const isDeleted = await deleteAProduct(productId);
-    if (isDeleted) {
+    await deleteAProduct(productId);
       setData(data.filter((product) => product.productId !== productId));
       dispath(alertMsg({type:"success" , message : "item deleted successfully"}))
       setTimeout(()=>{
         dispath(alertMsg({type:"" , message : ""}))
 
       },3000)
-    }
   };
 
   const handleSearchChange = (event) => {

@@ -65,6 +65,10 @@ const DbHome = () => {
     const beverages = products.filter(
       (item) => item.product_category === "beverages"
     );
+
+    const fruits = products.filter(
+      (item) => item.product_category === "fruits"
+    );
     data = [
       curries?.length || 0,
       biryani?.length || 0,
@@ -77,6 +81,7 @@ const DbHome = () => {
       snacks?.length || 0,
       regional?.length || 0,
       beverages?.length || 0,
+      fruits?.length || 0,
     ];
   }
   const labels = statuses.map((category) => category.title);

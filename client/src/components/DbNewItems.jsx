@@ -93,7 +93,7 @@ const DbNewItems = () => {
       product_price: price,
       imageURL: imageDownloadURL,
     };
-    console.log(data);
+    // console.log(data);
     addNewProduct(data).then((res) => {
       // console.log(res);
       dispatch(alertMsg({type : "success" , message : "new item added successfully"}));
