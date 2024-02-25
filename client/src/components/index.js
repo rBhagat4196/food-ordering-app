@@ -14,6 +14,8 @@ import { default as DbUsers } from "./DbUsers";
 import { default as DataTable } from "./DataTable";
 import { default as Spinner } from "./Spinner";
 import { default as UsersTable } from "./DbUsersTable";
+import { default as LandingPage } from "./LandingPage";
+
 export {
   LoginInput,
   Loader,
@@ -29,5 +31,6 @@ export {
   DbUsers,
   DataTable,
   Spinner,
-  UsersTable
+  UsersTable,
+  LandingPage
 };

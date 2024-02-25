@@ -20,6 +20,7 @@ import { BiChevronRight } from "react-icons/bi";
 import { HiCurrencyRupee } from "react-icons/hi2";
 import { IoFastFood } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
+import { MdDeliveryDining as Delivery } from "react-icons/md";
 
 export {
     FaEnvelope,
@@ -40,5 +41,6 @@ export {
     IoMdBasket,
     BiChevronRight,
     HiCurrencyRupee,
-    RxCross2
+    RxCross2,
+    Delivery
   };

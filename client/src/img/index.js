@@ -1,3 +1,3 @@
 import Avatar from "./avatar.png"
-
-export {Avatar}
+import Delivery from "./delivery.png"
+export {Avatar,Delivery}
