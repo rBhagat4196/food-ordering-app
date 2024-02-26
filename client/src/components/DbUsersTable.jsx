@@ -13,6 +13,7 @@ import {
   TableSortLabel
 } from "@mui/material";
 import { MdSearch, RxCross2 } from "../assets/icons";
+import { Avatar } from "../img";
 
 function RemoteData({ data }) {
   const [filteredData, setFilteredData] = useState([]);
@@ -27,6 +28,7 @@ function RemoteData({ data }) {
     setFilteredData(data);
   }, [data]);
 
+  console.log(data)
   const handleSearchChange = (event) => {
     setShowCross(true)
     const value = event.target.value;
@@ -136,9 +138,10 @@ function RemoteData({ data }) {
                   <TableRow key={row.email}>
                     <TableCell>
                       <img
-                        src={row.photoURL}
+                        src={row.photoURL ?? Avatar}
                         alt="User"
                         style={{ width: "50px", height: "50px" }}
+                        className="rounded-full w-full object-cover"
                       />
                     </TableCell>
                     <TableCell>{row.displayName}</TableCell>

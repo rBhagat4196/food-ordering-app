@@ -30,7 +30,7 @@ const Slider = () => {
     >
       {fruits &&
         fruits.map((data, i) => (
-            <SwiperSlide key={i} className="w-full">
+            <SwiperSlide key={i} className="">
             <SliderCard key={i} data={data} index={i} />
           </SwiperSlide>
         ))}

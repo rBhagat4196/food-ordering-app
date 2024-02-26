@@ -88,7 +88,7 @@ const Header = () => {
               {isMenu && (
                 <motion.div
                 {...slideTop}
-                className="px-6 py-4 w-48 bg-lightOverlay backdrop-blur-md 
+                className="px-6 py-4 w-48 bg-lightOverlay/[.8] backdrop-blur-md 
               rounded-md shadow-md absolute top-12 right-0 flex flex-col gap-4"
               onMouseLeave={()=> setIsMenu(false)}
               >

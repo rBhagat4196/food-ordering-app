@@ -3,6 +3,7 @@ import React from "react";
 import { Delivery, HeroBg } from "../img";
 import { buttonClick, staggerFadeInOut } from "../animations";
 import { foodData } from "../utils/styles";
+import { HiCurrencyRupee } from "../assets/icons";
 const LandingPage = () => {
   return (
     <motion.div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 ">
@@ -57,8 +58,9 @@ const LandingPage = () => {
                     {data.product_category}
                   </p>
 
-                  <p className="text-sm  font-semibold text-headingColor">
-                    <span className="text-xs text-red-600">$</span>{" "}
+                  <p className="flex gap-1 text-sm  font-semibold text-headingColor">
+                  <HiCurrencyRupee className="text-red-500 text-lg" />
+                    <span className="text-xs text-red-600"></span>
                     {data.product_price}
                   </p>
                 </motion.div>

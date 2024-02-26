@@ -6,6 +6,9 @@ import { HiCurrencyRupee, IoMdBasket } from "../assets/icons";
 
 const SliderCard = ({ data, index }) => {
 
+  const sendToCard = ()=>{
+    
+  }
   return (
     <div className="bg-lightOverlay hover:drop-shadow-lg backdrop-blur-md rounded-xl flex items-center justify-between relative px-4 py-2 w-full md:w-340 md:min-w-350 gap-3">
       <img src={data.imageURL} className="w-40 h-40 object-contain" alt="" />
@@ -20,7 +23,7 @@ const SliderCard = ({ data, index }) => {
 
         <motion.div
           {...buttonClick}
-          onClick={()=>{}}
+          onClick={sendToCard}
           className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center absolute -top-4 right-2 cursor-pointer"
         >
           <IoMdBasket className="text-2xl text-primary" />

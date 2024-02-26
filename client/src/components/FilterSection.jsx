@@ -9,7 +9,7 @@ import SliderCard from "./SliderCard";
 const FilterSection = () => {
   const [category, setCategory] = useState("fruits");
   const products = useSelector((state) => state.product.products);
-  console.log(products)
+  // console.log(products)
   return (
     <motion.div className="w-full flex items-start justify-start flex-col">
       <div className=" w-full flex items-center justify-between ">
