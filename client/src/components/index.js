@@ -19,6 +19,7 @@ import { default as HomeSlider } from "./HomeSlider";
 import { default as Slider } from "./Slider";
 import { default as SliderCard } from "./SliderCard";
 import { default as FilterSection } from "./FilterSection";
+import { default as Cart } from "./Cart";
 
 export {
   LoginInput,
@@ -40,5 +41,6 @@ export {
   HomeSlider,
   Slider,
   SliderCard,
-  FilterSection
+  FilterSection,
+  Cart,
 };

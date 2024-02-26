@@ -9,6 +9,7 @@ import { Avatar } from "../img";
 import {getAuth } from "firebase/auth"
 import { app } from "../config/firebase";
 import { setUserDetails } from "../redux/userSlice";
+import {setCartVisibility} from "../redux/cartSlice"
 const Header = () => {
   const user = useSelector((state) => state.user.user);
   const cart = useSelector(state => state.cart.cart)
@@ -64,7 +65,7 @@ const Header = () => {
             About Us
           </NavLink>
         </ul>
-        <motion.div {...buttonClick} className="relative cursor-pointer">
+        <motion.div {...buttonClick} className="relative cursor-pointer" onClick={()=> dispatch(setCartVisibility())}>
           <MdShoppingCart className="text-3xl text-textColor" />
           {
             cart?.length > 0 && (

@@ -1,14 +1,15 @@
 
 import { useDispatch, useSelector } from "react-redux"
-import {Header,LandingPage,HomeSlider, FilterSection} from "../components"
+import {Header,LandingPage,HomeSlider, FilterSection, Cart} from "../components"
 import { useEffect } from "react";
 import { getAllProducts } from "../api";
 import { setAllProducts } from "../redux/productSlice";
 
 const Home = () => {
   const products = useSelector((state => state.product.products));
+  const isCartVisible = useSelector((state) => state.cart.isVisible)
   const dispatch = useDispatch();
-
+  console.log(isCartVisible)
   // console.log(products)
   useEffect(()=>{
     if(!products){
@@ -23,6 +24,9 @@ const Home = () => {
         <HomeSlider/>
         <FilterSection/>
       </div>
+      {
+        isCartVisible && <Cart/>
+      }
     </main>
   )
 }
