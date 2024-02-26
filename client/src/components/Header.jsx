@@ -11,6 +11,7 @@ import { app } from "../config/firebase";
 import { setUserDetails } from "../redux/userSlice";
 const Header = () => {
   const user = useSelector((state) => state.user.user);
+  const cart = useSelector(state => state.cart.cart)
   const [isMenu,setIsMenu] = useState(false);
   const auth = getAuth(app)
   const navigate = useNavigate();
@@ -65,9 +66,14 @@ const Header = () => {
         </ul>
         <motion.div {...buttonClick} className="relative cursor-pointer">
           <MdShoppingCart className="text-3xl text-textColor" />
+          {
+            cart?.length > 0 && (
           <div className="w-6 h-6 rounded-full bg-red-500 flex items-end justify-center absolute -top-4 -right-1">
-            <p className="text-primary text-base font-semibold">2</p>
+            <p className="text-primary text-base font-semibold">{cart.length}</p>
           </div>
+
+            )
+          }
         </motion.div>
         {user ? (
           <>

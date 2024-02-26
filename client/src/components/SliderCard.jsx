@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { buttonClick } from "../animations";
 import { HiCurrencyRupee, IoMdBasket } from "../assets/icons";
-import { addNewItemToCart } from "../api";
+import { addNewItemToCart, getAllCartItems } from "../api";
 import { alertMsg } from "../redux/alertSlice";
 
 const SliderCard = ({ data, index }) => {
@@ -13,6 +13,10 @@ const SliderCard = ({ data, index }) => {
   const sendToCard = ()=>{
     addNewItemToCart(user?.user_id , data).then(res=>{
       dispatch(alertMsg({type : "success" , message : "Item added to cart successfully"}))
+
+      getAllCartItems(user?.user_id).then(items =>{
+        console.log(items)
+      })
       setTimeout(()=>{
         dispatch(alertMsg({type : "" , message : ""}))
       },3000)
