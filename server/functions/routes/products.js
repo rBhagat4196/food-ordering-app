@@ -2,9 +2,9 @@ const router = require("express").Router();
 const admin = require("firebase-admin");
 const { error } = require("firebase-functions/logger");
 const db = admin.firestore()
-const stripe = require('stripe')(process.env.STRIPE_KEY)
 
 db.settings({ ignoreUndefinedProperties: true });
+const stripe = require('stripe')(process.env.STRIPE_KEY)
 
 
 router.post("/create", async (req, res) => {
@@ -184,25 +184,32 @@ router.post("/updateCart/:user_id", async (req, res) => {
 });
 
 router.post('/create-checkout-session', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'T-shirt',
-          },
-          unit_amount: 2000,
-        },
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: 'http://localhost:4242/success',
-    cancel_url: 'http://localhost:4242/cancel',
-  });
+  const stripe = require('stripe')(process.env.STRIPE_KEY);
 
-  res.redirect(303, session.url);
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'T-shirt',
+            },
+            unit_amount: 2000,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: 'http://localhost:4242/success',
+      cancel_url: 'http://localhost:4242/cancel',
+    });
+
+    res.send({url : session.url}); // Redirect to the session's URL
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    res.status(500).send('Error creating checkout session');
+  }
 });
 
 

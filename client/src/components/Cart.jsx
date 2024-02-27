@@ -8,7 +8,7 @@ import {
   FcClearFilters,
   HiCurrencyRupee,
 } from "../assets/icons";
-import { getAllCartItems, increaseItemQuantity } from "../api";
+import { baseUrl, getAllCartItems, increaseItemQuantity } from "../api";
 import { alertMsg } from "../redux/alertSlice";
 import {setItems,clearItems,setCartVisibility} from "../redux/cartSlice"
 import { EmptyCart } from "../img";
@@ -28,6 +28,24 @@ const Cart = () => {
       });
     }
   }, [cart]);
+
+  const handleCheckOut = () => {
+    // const data = {
+    //   user: user,
+    //   cart: cart,
+    //   total: total,
+    // };
+    axios
+      .post(`${baseUrl}/api/products/create-checkout-session`)
+      .then((res) => {
+        console.log(res)
+        if (res.data.url) {
+          window.location.href = res.data.url;
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <motion.div
       {...slideIn}
@@ -69,7 +87,7 @@ const Cart = () => {
               <motion.button
                 {...buttonClick}
                 className="bg-orange-400 w-[50%] text-xl text-headingColor font-semibold hover:bg-orange-500 drop-shadow-md rounded-2xl"
-                onClick={() => {}}
+                onClick={handleCheckOut}
               >
                 Check Out
               </motion.button>
