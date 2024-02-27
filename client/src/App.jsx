@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUserDetails } from "./redux/userSlice";
 import { fadeOut } from "./animations";
 import { motion } from "framer-motion";
-import { Alert, Loader } from "./components";
+import { Alert, CheckOutSuccess, Loader } from "./components";
 import DashBoard from "./pages/DashBoard";
 import { getItems, setItems } from "./redux/cartSlice";
 
@@ -56,6 +56,8 @@ function App() {
         <Route path="/*" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard/*" element={<DashBoard />} />
+        <Route path="/checkout-success" element={<CheckOutSuccess />} />
+
       </Routes>
 
       {alert && <Alert type={alert?.type} message={alert?.msg} />}

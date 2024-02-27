@@ -20,6 +20,8 @@ import { default as Slider } from "./Slider";
 import { default as SliderCard } from "./SliderCard";
 import { default as FilterSection } from "./FilterSection";
 import { default as Cart } from "./Cart";
+import { default as CheckOutSuccess } from "./CheckOutSuccess";
+
 
 export {
   LoginInput,
@@ -42,5 +44,6 @@ export {
   Slider,
   SliderCard,
   FilterSection,
-  Cart
+  Cart,
+  CheckOutSuccess
 };

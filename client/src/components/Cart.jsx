@@ -42,7 +42,7 @@ const Cart = () => {
           <BiChevronRight className="text-[50px] text-textColor" />
         </motion.div>
         <p className="text-2xl text-headingColor font-semibold">Your Cart</p>
-        <motion.div {...buttonClick} className="cursor-pointer" onClick={()=>dispatch(clearItems())}>
+        <motion.div {...buttonClick} className="cursor-pointer" onClick={()=>{}}>
           <FcClearFilters className="text-[30px] text-textColor" />
         </motion.div>
       </div>
