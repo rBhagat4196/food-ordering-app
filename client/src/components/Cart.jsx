@@ -30,13 +30,13 @@ const Cart = () => {
   }, [cart]);
 
   const handleCheckOut = () => {
-    // const data = {
-    //   user: user,
-    //   cart: cart,
-    //   total: total,
-    // };
+    const data = {
+      user: user,
+      cart: cart,
+      total: total,
+    };
     axios
-      .post(`${baseUrl}/api/products/create-checkout-session`)
+      .post(`${baseUrl}/api/products/create-checkout-session`,{data})
       .then((res) => {
         console.log(res)
         if (res.data.url) {

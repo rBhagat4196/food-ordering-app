@@ -183,34 +183,53 @@ router.post("/updateCart/:user_id", async (req, res) => {
   }
 });
 
-router.post('/create-checkout-session', async (req, res) => {
-  const stripe = require('stripe')(process.env.STRIPE_KEY);
-
-  try {
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'T-shirt',
-            },
-            unit_amount: 2000,
+router.post("/create-checkout-session", async (req, res) => {
+  console.log(req.body)
+  const line_items = req.body.data.cart.map((item) => {
+    return {
+      price_data: {
+        currency: "inr",
+        product_data: {
+          name: item.product_name,
+          images: [item.imageURL],
+          metadata: {
+            id: item.productId,
           },
-          quantity: 1,
         },
-      ],
-      mode: 'payment',
-      success_url: 'http://localhost:4242/success',
-      cancel_url: 'http://localhost:4242/cancel',
-    });
+        unit_amount: item.product_price * 100,
+      },
+      quantity: item.quantity,
+    };
+  });
 
-    res.send({url : session.url}); // Redirect to the session's URL
-  } catch (error) {
-    console.error('Error creating checkout session:', error);
-    res.status(500).send('Error creating checkout session');
-  }
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    shipping_address_collection: { allowed_countries: ["IN"] },
+    shipping_options: [
+      {
+        shipping_rate_data: {
+          type: "fixed_amount",
+          fixed_amount: { amount: 0, currency: "inr" },
+          display_name: "Free shipping",
+          delivery_estimate: {
+            minimum: { unit: "hour", value: 2 },
+            maximum: { unit: "hour", value: 4 },
+          },
+        },
+      },
+    ],
+    phone_number_collection: {
+      enabled: true,
+    },
+    line_items,
+    mode:"payment",
+    success_url : `${process.env.CLIENT_URL}/checkout-success`,
+    cancel_url :  `${process.env.CLIENT_URL}`,
+  })
+
+  res.send({ url: session.url });
 });
+
 
 
 
