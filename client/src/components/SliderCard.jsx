@@ -5,6 +5,7 @@ import { buttonClick } from "../animations";
 import { HiCurrencyRupee, IoMdBasket } from "../assets/icons";
 import { addNewItemToCart, getAllCartItems } from "../api";
 import { alertMsg } from "../redux/alertSlice";
+import { setItems } from "../redux/cartSlice";
 
 const SliderCard = ({ data, index }) => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const SliderCard = ({ data, index }) => {
       dispatch(alertMsg({type : "success" , message : "Item added to cart successfully"}))
 
       getAllCartItems(user?.user_id).then(items =>{
-        console.log(items)
+        dispatch(setItems(items))
       })
       setTimeout(()=>{
         dispatch(alertMsg({type : "" , message : ""}))

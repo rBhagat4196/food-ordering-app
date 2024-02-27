@@ -42,5 +42,5 @@ export {
   Slider,
   SliderCard,
   FilterSection,
-  Cart,
+  Cart
 };

@@ -9,7 +9,7 @@ const Home = () => {
   const products = useSelector((state => state.product.products));
   const isCartVisible = useSelector((state) => state.cart.isVisible)
   const dispatch = useDispatch();
-  console.log(isCartVisible)
+  // console.log(isCartVisible)
   // console.log(products)
   useEffect(()=>{
     if(!products){
